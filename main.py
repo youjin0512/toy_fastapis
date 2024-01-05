@@ -1,5 +1,12 @@
 from fastapi import FastAPI
 app = FastAPI()
+
+from databases.connections import Settings
+settings = Settings()       # 인스턴스화
+@app.on_event("startup")
+async def init_db():
+    await settings.initialize_database()
+
 from routes.gadgets import router as event_router
 from routes.positionings import router as second_router
 from routes.users import router as users_router
@@ -28,11 +35,11 @@ app.add_middleware(
 
 @app.get("/")
 async def root(Request:Request):
-    # return {"message": "jisu World"}
+    # return {"message": "youjin World"}
     return templates.TemplateResponse("main.html",{'request':Request})
 
 @app.post("/")
 async def root(Request:Request):
-    # return {"message": "jisu World"}
+    # return {"message": "youjin World"}
     return templates.TemplateResponse("main.html",{'request':Request})
 

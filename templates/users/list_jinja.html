@@ -17,9 +17,9 @@
         <tbody>
             {% for user in users %}
             <tr>
-                <td>{{loop.index + 2}}, {{user.id}}</td>
+                <!-- <td>{{loop.index + 2}}, {{user.id}}</td>
                 <td>{{user.name}}</td>
-                <td>{{user.email | length}}, {{user.email}}</td>
+                <td>{{user.email | length}}, {{user.email}}</td> -->
                 <td><button formaction="/users/read/{{user.id}}">read</button></td>
             </tr>
             {% endfor %} <!-- 구문종료 -->
