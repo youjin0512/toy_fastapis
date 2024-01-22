@@ -75,9 +75,9 @@ async def update_users_withjson(id: PydanticObjectId, request:Request) -> User:
     return updated_users
 
 # 전체 내용 가져오기
-# @router.get("/", response_model=List[Event])
+# @router.get("/", response_model=List[Users])
 @router.get("/")
-# async def retrieve_all_users() -> List[Event]:
+# async def retrieve_all_users() -> List[Users]:
 async def retrieve_all_users() -> dict:
     users = await users_database.get_all()
     # return users
