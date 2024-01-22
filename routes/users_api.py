@@ -19,17 +19,6 @@ router = APIRouter(
 
 users_database = Database(User)
 
-# 새로운 레코드 추가 (C)
-# http://127.0.0.1:8000/events_api/new
-# {
-#         "creator": "이철수",
-#         "title": "도시의 빛",
-#         "image": "city_lights.jpg",
-#         "description": "밤하늘을 수놓은 도시의 불빛과 번화가",
-#         "tags": ["도시", "야경", "번화가", "불빛"],
-#         "location": "명동, 서울"
-#     }
-
 # 회원가입 : id 생성[Create]
 @router.post("/")    # post : 만들어서 전달
 async def create_user(body: User) -> dict:
