@@ -1,0 +1,55 @@
+<!-- made by yohan -->
+
+{% extends "nav_template.html"%}
+
+<title>문제 풀기</title>
+
+{% block main_container %}
+
+<h2>상식문제 5선</h2>
+<form action="">
+    <div class="mb-3 mt-3 row">
+        <div class="col-3">
+            <label for="name" class="form-label">응시자 이름을 입력하세요 :</label>
+        </div>
+        <div class="col-9">
+            <input type="" class="form-control" id="name" placeholder="이름을 입력하세요" name="name">
+        </div>
+    </div>
+
+    {% for question in questions %}
+    <div class="mb-3 mt-3">
+        문제 {{loop.index}} : {{question.question}} ({{question.score}}점)
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="question{{loop.index}}" id="answer{{loop.index}}-option1" value="1">
+            <label class="form-check-label" for="answer{{loop.index}}-option1">
+                1. {{question.options[0]}}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="question{{loop.index}}" id="answer{{loop.index}}-option2" value="2">
+            <label class="form-check-label" for="answer{{loop.index}}-option2">
+                2. {{question.options[1]}}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="question{{loop.index}}" id="answer{{loop.index}}-option3" value="3">
+            <label class="form-check-label" for="answer{{loop.index}}-option3">
+                3. {{question.options[2]}}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="question{{loop.index}}" id="answer{{loop.index}}-option4" value="4">
+            <label class="form-check-label" for="answer{{loop.index}}-option4">
+                4. {{question.options[3]}}
+            </label>
+        </div>
+    </div>
+    {% endfor %}
+    
+    
+        <button type="submit" class="btn btn-primary" formaction="/toy/data_list" formmethod="post">제출</button>
+        <button type="submit" class="btn btn-primary" formaction="/">취소</button>
+
+</form>
+{% endblock %}
