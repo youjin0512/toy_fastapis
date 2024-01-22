@@ -30,27 +30,27 @@ users_database = Database(User)
 #         "location": "명동, 서울"
 #     }
 
-# id 생성
+# 회원가입 : id 생성[Create]
 @router.post("/")    # post : 만들어서 전달
 async def create_user(body: User) -> dict:
     document = await users_database.save(body)
     return {
-        "message": "Event created successfully"
+        "message": "Users created successfully"
         ,"datas": document
     }
 
-# mongodb에서 한 개의 행(row) 확인 (CRUD - Read)
-@router.get("/{id}", response_model=User)  # method : get
+# mongodb에서 한 개의 행(row) 확인[Read]
+@router.get("/{id}/{pswd}", response_model=User)  # method : get
 async def retrieve_event(id: PydanticObjectId) -> User:
     get_id = await users_database.get(id)
     if not get_id:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Event with supplied ID does not exist"
+            detail="Users with supplied ID does not exist"
         )
     return get_id
 
-# ID에 따른 row 삭제 (D)
+# 회원탈퇴 : ID에 따른 row 삭제[Delete]
 @router.delete("/{id}")     # method : delete
 async def delete_event(id: PydanticObjectId) -> dict:
     users = await users_database.get(id)    # 해당 아이디가 맞는지(있는지) 확인
@@ -66,7 +66,7 @@ async def delete_event(id: PydanticObjectId) -> dict:
         ,"datas": users
     }
 
-# update(수정) with id (U)
+# update(회원수정) with id[Update]
 from fastapi import Request
 @router.put("/{id}", response_model=User)
 async def update_users_withjson(id: PydanticObjectId, request:Request) -> User:
