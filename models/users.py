@@ -11,7 +11,8 @@ class User(Document):    # 아래 변수들은 init이 생략되어있음(실제
     manager: Optional[str] = None
     sellist1 : Optional[str] = None
     text : Optional[str] = None
-  
+    # class 만드는 이유 : 값이 들어갈 때 값의 원천적인 데이터 형태를 구분할 수 있게 하기 위해 만들어준다.        
+    # Optional없이 str만 사용하면, 오류일 때 값을 뱉어낸다.
     class Settings:
         name = "users"
   
